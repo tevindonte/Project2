@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_URL } from './config';
 
-// const apiUrl = process.env.REACT_APP_API_URL;
-const baseUrl = `https://swapi2.azurewebsites.net/api`;
 
 function Character() {
   const { id } = useParams();
@@ -11,14 +10,14 @@ function Character() {
 
   useEffect(() => {
     const fetchCharacter = async () => {
-      const characterUrl = `${baseUrl}/characters/${id}`;
+      const characterUrl = `${API_URL}/characters/${id}`;
       const characterRes = await fetch(characterUrl);
       let characterData = await characterRes.json();
 
-      const homeworldRes = await fetch(`${baseUrl}/planets/${characterData.homeworld}`);
+      const homeworldRes = await fetch(`${API_URL}/planets/${characterData.homeworld}`);
       characterData.homeworld = await homeworldRes.json();
 
-      const filmsRes = await fetch(`${baseUrl}/characters/${characterData.id}/films`);
+      const filmsRes = await fetch(`${API_URL}/characters/${characterData.id}/films`);
       characterData.films = await filmsRes.json();
 
       setCharacter(characterData);

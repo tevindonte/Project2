@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { API_URL } from './config';
+
 
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
-    // const apiUrl = process.env.REACT_APP_API_URL;
-    fetch('https://swapi2.azurewebsites.net/api/characters')
+    fetch(`${API_URL}/characters`)
       .then(response => response.json())
       .then(data => setCharacters(data))
       .catch(error => console.error("Fetching characters failed:", error));

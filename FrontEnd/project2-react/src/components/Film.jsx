@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_URL } from './config';
 
 function FilmPage() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ function FilmPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch(`https://swapi2.azurewebsites.net/api/films/${id}`)
+    fetch(`${API_URL}/films/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Film not found');
@@ -19,8 +20,8 @@ function FilmPage() {
       .then(film => {
         setFilm(film);
         return Promise.all([
-          fetch(`https://swapi2.azurewebsites.net/api/films/${id}/characters`).then(res => res.json()),
-          fetch(`https://swapi2.azurewebsites.net/api/films/${id}/planets`).then(res => res.json())
+          fetch(`${API_URL}/films/${id}/characters`).then(res => res.json()),
+          fetch(`${API_URL}/films/${id}/planets`).then(res => res.json())
         ]);
       })
       .then(([charactersData, planetsData]) => {

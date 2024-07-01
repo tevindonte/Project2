@@ -1,0 +1,1 @@
+export const API_URL = 'https://swapi2.azurewebsites.net/api';
