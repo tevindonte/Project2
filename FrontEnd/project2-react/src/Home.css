@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+  }
+
+
+  #titlemain {
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: yellow;
+    -webkit-text-fill-color: black;
+
+    text-decoration-color: black;
+  }
+
+h1 {
+    -webkit-text-fill-color: yellow;
+}
+
+
+ul {
+    -webkit-text-fill-color: white;
+}
+
+
+
+
