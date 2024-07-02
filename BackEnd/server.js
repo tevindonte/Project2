@@ -95,7 +95,7 @@ app.get('/api/characters/:id', async (req, res) => {
         const db = client.db(dbName);
         const collection = db.collection(collectionName_2);
         const { id } = req.params;
-        const character = await collection.find({ "id": parseInt(id) }).toArray();
+        const character = await collection.findOne({ "id": parseInt(id) });
         res.json(character);
     } catch (err) {
         console.error("Error:", err);
@@ -160,9 +160,9 @@ app.get('/api/films/:id/planets', async (req, res) => {
     try {
         const client = await MongoClient.connect(url);
         const db = client.db(dbName);
-        const collection = db.collection(collectionName_5);
+        const collection = db.collection(collectionName_3);
         const { id } = req.params;
-        const filmcharacters = await collection.find({ "film_id": parseInt(id) }).project({ _id: 0, film_id: 0 }).toArray();
+        const filmcharacters = await collection.find({ "id": parseInt(id) }).project({ _id: 0 }).toArray();
         res.json(filmcharacters);
     } catch (err) {
         console.error("Error:", err);
